@@ -1,6 +1,7 @@
 """
 Задание: Исправление ошибок и модернизация первой версии игры
 bugfix01-logic. Проверка работоспособности и устранение ошибок
+bugfix02-balance. ⚖️ Сбалансировать урон монстра и игрока
 """
 
 from abc import ABC, abstractmethod
@@ -23,7 +24,7 @@ class Railgun(Weapon):
 
     def attack(self):
         if self.available:
-            damage = random.randint(15, 20)
+            damage = random.randint(25, 40)
             return damage
         return 0
 
@@ -44,7 +45,7 @@ class Rocket(Weapon):
 
     def attack(self):
         if self.available:
-            damage = random.randint(20, 30)
+            damage = random.randint(15, 25)
             return damage
         return 0
 
@@ -65,7 +66,7 @@ class Grenade(Weapon):
 
     def attack(self):
         if self.available:
-            damage = random.randint(10, 20)
+            damage = random.randint(10, 18)
             return damage
         return 0
 
@@ -86,7 +87,7 @@ class MachineGun(Weapon):
 
     def attack(self):
         if self.available:
-            damage = random.randint(0, 10)
+            damage = random.randint(3, 8)
             return damage
         return 0
 
@@ -105,7 +106,7 @@ class Knife(Weapon):
         self.recharge_counter = 0
 
     def attack(self):
-        return random.randint(0, 5)
+        return random.randint(1, 6)
 
     def recharge(self, current_battle_number=None):
         self.available = True
@@ -119,7 +120,7 @@ class Monster:
 
     def attack(self):
         weapon = random.choice(self.weapons)
-        damage = random.randint(1, 5)
+        damage = random.randint(3, 10)
         return weapon, damage
 
     def take_damage(self, damage):
